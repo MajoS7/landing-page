@@ -71,7 +71,7 @@ exports.handler = async (event, context) => {
         from: process.env.EMAIL_USER,
         to: params.correo,
         subject: "💌 Mensaje recibido de alguien interesado en apoyar",
-        text: generarCuerpoMensaje(params),
+        html: generarCuerpoMensaje(params),
       });
     default:
       return {
