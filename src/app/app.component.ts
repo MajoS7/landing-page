@@ -20,7 +20,8 @@ export class AppComponent {
   });
 
 
-  async onSubmit() {
+  async onSubmit(event: SubmitEvent) {
+    event.preventDefault();
     if (this.contactForm.valid) {
       const formData = this.contactForm.value;
       console.log('Formulario enviado:', formData);

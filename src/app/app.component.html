@@ -65,7 +65,7 @@
 
         <section class="bg-white p-10 rounded-3xl shadow-lg">
           <h2 class="text-3xl font-semibold text-green-700 mb-6 text-center">📬 Contáctanos o Regístrate</h2>
-          <form class="grid gap-6 max-w-xl mx-auto" (submit)="onSubmit()">
+          <form class="grid gap-6 max-w-xl mx-auto" (submit)="onSubmit($event)">
             <input type="text" placeholder="Nombre completo" class="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500">
             <input type="email" placeholder="Correo electrónico" class="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500">
             <textarea rows="4" placeholder="Mensaje o interés en colaborar" class="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
