@@ -1,5 +1,5 @@
 const { config } = require("dotenv");
-const nodemailer = required("nodemailer");
+const nodemailer = require("nodemailer");
 config();
 const transport = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
