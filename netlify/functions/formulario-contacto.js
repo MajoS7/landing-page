@@ -20,13 +20,13 @@ function enviarMail(mail) {
           })
         : resolve({
             statusCode: 200,
-            body: "Email enviado con éxito a " + mail.to,
+            body: "Correo electronico enviado con éxito a " + mail.to,
           });
     });
   });
 }
 function generarCuerpoMensaje(params) {
-  return `Formulario de contacto enviado por ${params.nombre} - ${params.email}.
+  return `Formulario de contacto enviado por ${params.nombre} - ${params.correo}.
         El mensaje es el siguiente:
         ${params.mensaje}
         `;
