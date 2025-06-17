@@ -72,6 +72,14 @@
             <button type="submit" class="bg-green-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-green-700 transition">
               Enviar mensaje
             </button>
+            @if(cargando()){
+              <p>Enviando mensaje</p>
+            }
+            @if(exito()){
+              <p>Mensaje enviado</p>
+            } @else if (exito() === false){
+              <p>Error enviando mensaje</p>
+            }
           </form>
         </section>
       </div>
