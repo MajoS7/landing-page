@@ -53,21 +53,22 @@ function generarCuerpoMensaje(params) {
         <div style="margin-top:10px; padding:15px; background-color:#f0fdf4; border-left:4px solid #047857; color:#374151;">
           ${mensaje}
         </div>
-        <p style="margin-top:30px; font-size:12px; color:#6b7280;">Este mensaje fue enviado automáticamente desde el sitio web.</p>
+        <p style="margin-top:30px; font-size:12px; color:#6b7280; text-align:center;">
+          Este mensaje fue enviado automáticamente desde el sitio web.
+        </p>
       </div>
-      <div style="text-align:center; margin-top:20px;">
-        <a href="https://www.facebook.com/profile.php?id=61577184611681" target="_blank" style="margin:0 10px; text-decoration:none; color:#1f2937;">
-          🌐 Facebook
+      <div style="text-align:center; margin-top:30px;">
+        <a href="https://www.facebook.com/tuperfil" target="_blank" style="margin:0 10px;">
+          <img src="https://cdn-icons-png.flaticon.com/24/733/733547.png" alt="Facebook" width="24" height="24" style="vertical-align:middle;">
         </a>
-        <a href="https://www.instagram.com/ali.mentosparatodos/" target="_blank" style="margin:0 10px; text-decoration:none; color:#1f2937;">
-          📷 Instagram
+        <a href="https://www.instagram.com/tuperfil" target="_blank" style="margin:0 10px;">
+          <img src="https://cdn-icons-png.flaticon.com/24/733/733558.png" alt="Instagram" width="24" height="24" style="vertical-align:middle;">
         </a>
-        <a href="https://www.tiktok.com/@alimentosparatod" target="_blank" style="margin:0 10px; text-decoration:none; color:#1f2937;">
-          🎵 TikTok
+        <a href="https://www.tiktok.com/@tuperfil" target="_blank" style="margin:0 10px;">
+          <img src="https://cdn-icons-png.flaticon.com/24/3046/3046122.png" alt="TikTok" width="24" height="24" style="vertical-align:middle;">
         </a>
       </div>
-
-      <footer style="text-align:center; font-size:12px; color:#6b7280; margin-top:40px;">
+      <footer style="text-align:center; font-size:12px; color:#6b7280; margin-top:20px;">
         © 2025 Plataforma Alimentaria Solidaria. Todos los derechos reservados.
       </footer>
     </div>
