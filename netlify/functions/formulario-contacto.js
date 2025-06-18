@@ -55,6 +55,17 @@ function generarCuerpoMensaje(params) {
         </div>
         <p style="margin-top:30px; font-size:12px; color:#6b7280;">Este mensaje fue enviado automáticamente desde el sitio web.</p>
       </div>
+      <div style="text-align:center; margin-top:20px;">
+        <a href="https://www.facebook.com/profile.php?id=61577184611681" target="_blank" style="margin:0 10px; text-decoration:none; color:#1f2937;">
+          🌐 Facebook
+        </a>
+        <a href="https://www.instagram.com/ali.mentosparatodos/" target="_blank" style="margin:0 10px; text-decoration:none; color:#1f2937;">
+          📷 Instagram
+        </a>
+        <a href="https://www.tiktok.com/@alimentosparatod" target="_blank" style="margin:0 10px; text-decoration:none; color:#1f2937;">
+          🎵 TikTok
+        </a>
+      </div>
 
       <footer style="text-align:center; font-size:12px; color:#6b7280; margin-top:40px;">
         © 2025 Plataforma Alimentaria Solidaria. Todos los derechos reservados.

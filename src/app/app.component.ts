@@ -21,8 +21,7 @@ export class AppComponent {
   });
 
 
-  public async onSubmit(event: SubmitEvent) {
-    event.preventDefault();
+  public async onSubmit() {
     if (this.contactForm.valid) {
       const formData = this.contactForm.value;
       this.cargando.set(true);
