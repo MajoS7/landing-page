@@ -34,21 +34,17 @@ export class AppComponent {
 
   public async onSubmit() {
     if (this.contactForm.valid) {
-      const formData = this.contactForm.value;
       this.isLoading.set(true);
-
       try {
         const res: Response = await fetch(
           '/.netlify/functions/formulario-contacto',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(this.contactForm.value),
           }
         );
-
         this.isLoading.set(false);
-
         if (res.ok) {
           this.toastr.success('Correo enviado exitosamente');
           this.contactForm.reset();
