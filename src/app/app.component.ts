@@ -1,46 +1,71 @@
 import { NgClass } from '@angular/common';
-import { Component,inject ,WritableSignal, signal} from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-
+import { Component, inject, signal } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { ProgressBarModule } from 'primeng/progressbar';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass, ProgressBarModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'landing-page';
-  fb: FormBuilder = inject(FormBuilder);
-  exito:WritableSignal<boolean|undefined> = signal(undefined);;
-  cargando = signal(false);
-  contactForm: FormGroup = this.fb.group({
-    nombre: ['', Validators.required],
-    correo: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
-    mensaje: ['', Validators.required]
+  public title = 'landing-page';
+  private fb: FormBuilder = inject(FormBuilder);
+  private toastr: ToastrService = inject(ToastrService);
+  public isLoading = signal(false);
+  public contactForm: FormGroup = this.fb.group({
+    name: ['', Validators.required],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
+      ],
+    ],
+    message: ['', Validators.required],
   });
-
 
   public async onSubmit() {
     if (this.contactForm.valid) {
       const formData = this.contactForm.value;
-      this.cargando.set(true);
-      const res = await fetch("/.netlify/functions/formulario-contacto", {
-        method:'POST',
-        headers: {
-          "Content-Type":"application/json"
-        },
-        body: JSON.stringify(formData)
-      })
-       this.cargando.set(false);
-       this.exito.set(res.ok);
-    }else{
+      this.isLoading.set(true);
+
+      try {
+        const res: Response = await fetch(
+          '/.netlify/functions/formulario-contacto',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+          }
+        );
+
+        this.isLoading.set(false);
+
+        if (res.ok) {
+          this.toastr.success('Correo enviado exitosamente');
+          this.contactForm.reset();
+        } else {
+          this.toastr.error('Error al enviar el correo');
+        }
+      } catch (error) {
+        this.isLoading.set(false);
+        this.toastr.error('Ocurrió un error inesperado');
+      }
+    } else {
       this.contactForm.markAllAsTouched();
     }
   }
 
-   public campoInvalido(campo: string): boolean {
-    const control = this.contactForm.get(campo);
-    return control?.invalid && control?.touched || false;
+  public fieldValid(field: string): boolean {
+    const control = this.contactForm.get(field);
+    return (control?.invalid && control?.touched) || false;
   }
 }

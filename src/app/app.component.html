@@ -64,56 +64,52 @@
         <section id="contacto" class="bg-white p-10 rounded-3xl shadow-lg">
           <h2 class="text-3xl font-semibold text-green-700 mb-6 text-center">📬¡Contáctanos!</h2>
           <form [formGroup]="contactForm" class="grid gap-6 max-w-xl mx-auto" (submit)="onSubmit()">
-            <input type="text" placeholder="Nombre completo" class="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" formControlName="nombre"
+            <input type="text" placeholder="Nombre completo" class="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" formControlName="name"
               [ngClass]="{
-                'border-red-500 focus:ring-red-500 focus:border-red-500': campoInvalido('nombre'),
-                'border-gray-300 focus:ring-green-500 focus:border-green-500': !campoInvalido('nombre')
+                'border-red-500 focus:ring-red-500 focus:border-red-500': fieldValid('name'),
+                'border-gray-300 focus:ring-green-500 focus:border-green-500': !fieldValid('name')
               }">
               <p class="text-red-500 text-sm">
-                @if(campoInvalido('nombre') && contactForm.get('nombre')?.errors?.['required']){
+                @if(fieldValid('name') && contactForm.get('name')?.errors?.['required']){
                     El nombre es obligatorio.
                 }
               </p>
 
-            <input type="email" placeholder="Correo electrónico" class="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" formControlName="correo"
+            <input type="email" placeholder="Correo electrónico" class="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" formControlName="email"
             [ngClass]="{
-                'border-red-500 focus:ring-red-500 focus:border-red-500': campoInvalido('correo'),
-                'border-gray-300 focus:ring-green-500 focus:border-green-500': !campoInvalido('correo')
+                'border-red-500 focus:ring-red-500 focus:border-red-500': fieldValid('email'),
+                'border-gray-300 focus:ring-green-500 focus:border-green-500': !fieldValid('email')
               }">
             <p class="text-red-500 text-sm">
-              @if(campoInvalido('correo')){
-                @if(contactForm.get('correo')?.errors?.['required']){
+              @if(fieldValid('email')){
+                @if(contactForm.get('email')?.errors?.['required']){
                   El correo electronicó es obligatorio.
                 }
-                @else if(contactForm.get('correo')?.errors?.['pattern']){
+                @else if(contactForm.get('email')?.errors?.['pattern']){
                   El formato del correo electronicó es inválido.
                 }
               }
             </p>
 
-            <textarea rows="4" placeholder="Mensaje o interés en colaborar" class="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" formControlName="mensaje"
+            <textarea rows="4" placeholder="Mensaje o interés en colaborar" class="p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" formControlName="message"
             [ngClass]="{
-                'border-red-500 focus:ring-red-500 focus:border-red-500': campoInvalido('mensaje'),
-                'border-gray-300 focus:ring-green-500 focus:border-green-500': !campoInvalido('mensaje')
+                'border-red-500 focus:ring-red-500 focus:border-red-500': fieldValid('message'),
+                'border-gray-300 focus:ring-green-500 focus:border-green-500': !fieldValid('message')
               }"></textarea>
             <p class="text-red-500 text-sm">
-              @if(campoInvalido('mensaje') && contactForm.get('mensaje')?.errors?.['required']){
+              @if(fieldValid('message') && contactForm.get('message')?.errors?.['required']){
                   El mensaje es obligatorio.
               }
             </p>
-            <button type="submit" class="bg-green-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-green-700 transition">
+            <button [disabled]="contactForm.invalid" type="submit" class="font-bold px-6 py-3 rounded-xl transition 
+                text-white 
+                bg-green-600 hover:bg-green-700 
+                disabled:bg-green-100 disabled:cursor-not-allowed
+                disabled:text-green-400">
               Enviar mensaje
             </button>
-            @switch(true) {
-              @case(cargando()) {
-                <p class="text-blue-500 text-sm text-center">Enviando mensaje...</p>
-              }
-              @case(exito() === true) {
-                <p class="text-green-600 text-sm text-center">✅ Mensaje enviado correctamente.</p>
-              }
-              @case(exito() === false) {
-                <p class="text-red-600 text-sm text-center">❌ Hubo un error al enviar tu mensaje.</p>
-              }
+            @if (isLoading()) {
+              <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
             }
           </form>
         </section>

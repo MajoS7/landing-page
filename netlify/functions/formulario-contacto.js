@@ -1,6 +1,8 @@
 const { config } = require("dotenv");
 const nodemailer = require("nodemailer");
+
 config();
+
 const transport = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
   port: 465,
@@ -10,7 +12,8 @@ const transport = nodemailer.createTransport({
     pass: process.env.EMAIL_PASSWORD,
   },
 });
-function enviarMail(mail) {
+
+function sendEmail(mail) {
   return new Promise((resolve, reject) => {
     transport.sendMail(mail, (error, _) => {
       error
@@ -25,7 +28,7 @@ function enviarMail(mail) {
     });
   });
 }
-function generarCuerpoMensaje(params) {
+function generateMessageBody(params) {
   const escape = (text) =>
     text
       .replace(/&/g, "&amp;")
@@ -34,9 +37,9 @@ function generarCuerpoMensaje(params) {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
 
-  const nombre = escape(params.nombre || '');
-  const correo = escape(params.correo || '');
-  const mensaje = escape(params.mensaje || '');
+  const name = escape(params.name || '');
+  const email = escape(params.email || '');
+  const message = escape(params.message || '');
 
   return `
     <div style="background-color:#f0fdf4; font-family:Arial,sans-serif; color:#1f2937; padding:20px;">
@@ -47,11 +50,11 @@ function generarCuerpoMensaje(params) {
 
       <div style="max-width:600px; margin:40px auto; background:white; border-radius:16px; padding:30px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
         <h2 style="color:#047857; font-size:22px; margin-bottom:20px;">📬 Nuevo Mensaje desde el Formulario de Contacto</h2>
-        <p><strong>Nombre:</strong> ${nombre}</p>
-        <p><strong>Correo electrónico:</strong> ${correo}</p>
+        <p><strong>Nombre:</strong> ${name}</p>
+        <p><strong>Correo electrónico:</strong> ${email}</p>
         <p><strong>Mensaje:</strong></p>
         <div style="margin-top:10px; padding:15px; background-color:#f0fdf4; border-left:4px solid #047857; color:#374151;">
-          ${mensaje}
+          ${message}
         </div>
         <p style="margin-top:30px; font-size:12px; color:#6b7280; text-align:center;">
           Este mensaje fue enviado automáticamente desde el sitio web.
@@ -84,12 +87,11 @@ exports.handler = async (event, context) => {
   switch (event.httpMethod) {
     case "POST":
       const params = JSON.parse(event.body);
-      console.log("Recibi una solicitud", params);
-      return await enviarMail({
+      return await sendEmail({
         from: process.env.EMAIL_USER,
-        to: params.correo,
+        to: params.email,
         subject: "💌 Mensaje recibido de alguien interesado en apoyar",
-        html: generarCuerpoMensaje(params),
+        html: generateMessageBody(params),
       });
     default:
       return {
