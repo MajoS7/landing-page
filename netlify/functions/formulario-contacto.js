@@ -71,7 +71,7 @@ function generateMessageBody(params) {
             <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 2.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 6.5zm0 2A2.5 2.5 0 1 1 9.5 11 2.5 2.5 0 0 1 12 8.5zm4.5-2a1 1 0 1 0 1 1 1 1 0 0 0-1-1z"/>
           </svg>
         </a>
-        <a href="https://www.tiktok.com/@alimentosparatod" target="_blank" aria-label="TikTok" style="margin: 0 12px; display:inline-block; color: #1f2937;">
+        <a href="https://www.tiktok.com/@alimentosparatodo?_t=ZS-8xNL7VUgG3T&_r=1" target="_blank" aria-label="TikTok" style="margin: 0 12px; display:inline-block; color: #1f2937;">
           <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
             <path d="M16.3 1a6.5 6.5 0 0 0 3.4 2.1v3.4a9.3 9.3 0 0 1-3.5-1V13a6 6 0 1 1-6-6h.7v3.2H10a2.7 2.7 0 1 0 2.4 2.7V1h3.9z"/>
           </svg>
